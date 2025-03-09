@@ -22,7 +22,7 @@ from real_estate import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('application/', include('user.urls')),
+    path('application/', include('application.urls')),
     path('user/', include('user.urls'))
 ]
 

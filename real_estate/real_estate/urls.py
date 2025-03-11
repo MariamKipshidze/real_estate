@@ -18,9 +18,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from application.views import home_view, contact_info
 from real_estate import settings
 
 urlpatterns = [
+    path('', home_view, name='home'),
+    path('contact/', contact_info, name='contact_info'),
     path('admin/', admin.site.urls),
     path('application/', include('application.urls')),
     path('user/', include('user.urls'))

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>საკონტაქტო ინფორმაცია</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .contact-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .contact-info {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>საკონტაქტო ინფორმაცია</h1>
+        <div class="contact-image">
+            <img src="{% static 'your_agency.png' %}" alt="Your Agency">
+        </div>
+        <div class="contact-info">
+            <p>📍 მისამართი: თბილისი, საქართველო</p>
+            <p>📞 ტელეფონი: +995 123 45 67 89</p>
+            <p>✉ ელ. ფოსტა: info@example.com</p>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock %}

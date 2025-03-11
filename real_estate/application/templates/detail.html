@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="title">{{ property.title }}</h2>
+        <div class="property-slider">
+            {% for image in property.images.all %}
+                <img src="{{ image.image.url }}" alt="Property Image" class="slider-image">
+            {% empty %}
+                <img src="https://via.placeholder.com/600x400" alt="No Image Available" class="slider-image">
+            {% endfor %}
+        </div>
+        <div class="property-details">
+            <p><strong>Price:</strong> ${{ property.price }}</p>
+            <p><strong>Type:</strong> {{ property.get_property_type_display }}</p>
+            <p><strong>Location:</strong> {{ property.location }}</p>
+            <p><strong>Description:</strong> {{ property.description }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: #A9C9FF;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .title {
+        text-align: center;
+        color: #1d3d5e;
+        margin-bottom: 20px;
+    }
+
+    .property-slider {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .slider-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .property-details {
+        margin-top: 20px;
+        padding: 15px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        color: #1d3d5e;
+    }
+</style>
+{% endblock %}

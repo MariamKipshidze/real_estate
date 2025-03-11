@@ -46,8 +46,8 @@
             <img src="{% static 'logo.jpg' %}" alt="Logo">
         </div>
         <nav class="menu">
-            <a href="#" class="nav-link">განაცხადები</a>
-            <a href="#" class="nav-link">საკონტაქტო ინფორმაცია</a>
+            <a href="{% url 'property_list' %}" class="nav-link">განაცხადები</a>
+            <a href="{% url 'contact_info' %}" class="nav-link">საკონტაქტო ინფორმაცია</a>
         </nav>
     </header>
 

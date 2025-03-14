@@ -37,6 +37,17 @@
         .menu a:hover {
             color: #A9C9FF;
         }
+        
+        /* Center content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers all content inside */
+            justify-content: center;
+            width: 100%;
+            min-height: 100vh; /* Ensures it covers full screen */
+            padding: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +62,7 @@
         </nav>
     </header>
 
-    <main>
+    <main class="main-content">
         {% block content %}
         {% endblock %}
     </main>

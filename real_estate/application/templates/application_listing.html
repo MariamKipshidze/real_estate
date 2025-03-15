@@ -4,7 +4,6 @@
 
 {% block content %}
     <div class="container">
-
         <div class="property-list">
             {% for property in properties %}
                 <div class="property-card">
@@ -14,21 +13,15 @@
                                 <img src="{{ img.url }}" alt="{{ property.title }}" class="property-image">
                             {% endthumbnail %}
                         {% else %}
-                            <img src="{% static '/no_image.jpeg' %}" alt="No Image Available" class="property-image" style="width: 300px; height: 300px; object-fit: cover;">
+                            <img src="{% static '/no_image.jpeg' %}" alt="No Image Available" class="property-image">
                         {% endif %}
                     {% endwith %}
 
-                    <div class="overlay-info">
-                        <span class="area">50 მ²</span>
-                        <span class="bedrooms">🛏 2</span>
-                        <span class="photos">📷 1/9</span>
-                    </div>
-
                     <div class="property-info">
-                        <h3 class="price">{{ property.price }} ₾</h3>
+                        <h3 class="price">{{ property.price }} $</h3>
                         <p class="location">📍 {{ property.location }}</p>
                         <p class="description">{{ property.description|truncatechars:50 }}</p>
-                        <a href="{% url 'property_detail' property.pk %}" class="details-link">➡ დეტალები</a>
+                        <a href="{% url 'property_detail' property.pk %}" class="details-link">View Details ➡</a>
                     </div>
                 </div>
             {% empty %}
@@ -36,13 +29,14 @@
             {% endfor %}
         </div>
     </div>
-{% endblock %}
 
 {% block extra_css %}
 <style>
     body {
         background-color: #F5F7FA;
-        font-family: Arial, sans-serif;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -52,39 +46,42 @@
     .container {
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto; /* Centers the container */
+        margin: 0 auto;
         padding: 20px;
     }
 
     .title {
-        font-size: 1.8em;
+        font-size: 2.5em;
         color: #1d3d5e;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: bold;
     }
 
     .property-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center; /* Centers the property cards */
-        align-items: center;
-        gap: 15px;
-        padding-bottom: 15px;
-        scrollbar-width: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding-bottom: 20px;
     }
 
     .property-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Centers content inside the card */
-        text-align: center; /* Ensures text is centered */
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .property-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     .property-image {
-        width: 300px;
+        width: 100%;
         height: 200px;
         object-fit: cover;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
     }
 
     .overlay-info {
@@ -93,33 +90,35 @@
         left: 10px;
         background: rgba(0, 0, 0, 0.6);
         color: white;
-        padding: 4px 8px;
+        padding: 8px 12px;
         border-radius: 8px;
         font-size: 0.9em;
         display: flex;
-        gap: 5px;
+        gap: 10px;
     }
 
     .property-info {
-        padding: 12px;
+        padding: 16px;
         color: #1d3d5e;
     }
 
     .price {
-        font-size: 1.2em;
+        font-size: 1.5em;
         font-weight: bold;
         color: #5DA9E9;
+        margin-bottom: 10px;
     }
 
     .location {
-        font-size: 0.9em;
+        font-size: 1em;
         color: #666;
+        margin-bottom: 10px;
     }
 
     .description {
         font-size: 0.9em;
         color: #333;
-        margin: 10px 0;
+        margin-bottom: 15px;
     }
 
     .details-link {
@@ -127,13 +126,15 @@
         text-decoration: none;
         background: #5DA9E9;
         color: white;
-        padding: 8px 12px;
+        padding: 10px 15px;
         border-radius: 6px;
         font-weight: bold;
+        transition: background 0.3s ease;
     }
 
     .details-link:hover {
         background: #1d3d5e;
     }
 </style>
+{% endblock %}
 {% endblock %}

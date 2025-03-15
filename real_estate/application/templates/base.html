@@ -7,56 +7,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Home{% endblock %}</title>
     <style>
+        /* General Body Styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #ffffff;
         }
+
+        /* Header Styling */
         .header {
-            background-color: #1d3d5e;
-            padding: 15px;
+            background-color: #1d3d5e; /* Dark blue background */
+            padding: 0 20px; /* Adds padding on the sides */
+            height: 80px; /* Sets a fixed height for the header */
             display: flex;
-            align-items: center;
-            justify-content: center; /* Center content */
-            gap: 50px; /* Space between logo and menu */
+            align-items: center; /* Vertically centers the content */
+            justify-content: center; /* Horizontally centers the content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+            width: 100%; /* Ensures the header spans the full width */
         }
-        .logo img {
-            height: 50px;
+
+        /* Logo Styling */
+        .navbar-logo img {
+            height: 50px; /* Adjust the height of the logo */
         }
-        .menu {
+
+        /* Navigation Links Styling */
+        .navbar {
             display: flex;
-            gap: 40px; /* Spread menu items apart */
+            align-items: center; /* Vertically centers the links */
+            gap: 20px; /* Adds space between links */
         }
-        .menu a {
-            color: #5DA9E9;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+
+        .nav-link {
+            color: white; /* White text for links */
+            text-decoration: none; /* Removes underline */
+            font-size: 1.1em; /* Slightly larger font size */
+            padding: 8px 12px; /* Adds padding to links */
+            border-radius: 6px; /* Rounded corners for links */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
         }
-        .menu a:hover {
-            color: #A9C9FF;
+
+        .nav-link:hover {
+            background-color: #5DA9E9; /* Light blue background on hover */
         }
-        
-        /* Center content */
+
+        /* Main Content Styling */
         .main-content {
             display: flex;
             flex-direction: column;
             align-items: center; /* Centers all content inside */
             justify-content: center;
             width: 100%;
-            min-height: 100vh; /* Ensures it covers full screen */
+            min-height: calc(100vh - 80px); /* Ensures it covers full screen minus header height */
             padding: 20px 0;
+        }
+        .header {
+            gap: 50px; /* Adds space between logo and navigation links */
+        }
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensures the header stays above other content */
         }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <div class="logo">
+        <div class="navbar-logo">
             <img src="{% static 'logo.jpg' %}" alt="Logo">
         </div>
-        <nav class="menu">
+        <nav class="navbar">
             <a href="{% url 'property_list' %}" class="nav-link">განაცხადები</a>
             <a href="{% url 'contact_info' %}" class="nav-link">საკონტაქტო ინფორმაცია</a>
         </nav>

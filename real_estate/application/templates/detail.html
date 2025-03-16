@@ -1,15 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
     <div class="container">
         <h2 class="title">{{ property.title }}</h2>
+
+        <!-- Image Slider -->
         <div class="property-slider">
             {% for image in property.images.all %}
-                <img src="{{ image.image.url }}" alt="Property Image" class="slider-image">
+                <div>
+                    <img src="{{ image.image.url }}" alt="Property Image" class="slider-image">
+                </div>
             {% empty %}
-                <img src="https://via.placeholder.com/600x400" alt="No Image Available" class="slider-image">
+                <div>
+                    <img src="{% static 'no_image.jpeg' %}" alt="No Image Available" class="slider-image">
+                </div>
             {% endfor %}
         </div>
+
+        <!-- Property Details -->
         <div class="property-details">
             <p><strong>Price:</strong> ${{ property.price }}</p>
             <p><strong>Type:</strong> {{ property.get_property_type_display }}</p>
@@ -17,51 +26,87 @@
             <p><strong>Description:</strong> {{ property.description }}</p>
         </div>
     </div>
-{% endblock %}
 
 {% block extra_css %}
 <style>
     body {
-        background-color: #A9C9FF;
-        font-family: Arial, sans-serif;
+        background-color: #F5F7FA;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
     }
 
     .container {
-        width: 80%;
-        margin: auto;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
         padding: 20px;
     }
 
     .title {
-        text-align: center;
+        font-size: 2.5em;
         color: #1d3d5e;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: bold;
     }
 
     .property-slider {
-        display: flex;
-        overflow-x: auto;
-        gap: 10px;
-        padding: 10px;
-        border-radius: 8px;
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        margin-bottom: 30px;
     }
 
     .slider-image {
         width: 100%;
-        max-height: 400px;
+        height: 500px;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 12px;
     }
 
     .property-details {
-        margin-top: 20px;
-        padding: 15px;
         background: white;
-        border-radius: 8px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
         color: #1d3d5e;
     }
+
+    .property-details p {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .property-details strong {
+        color: #5DA9E9;
+    }
 </style>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Include Slick Slider CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<!-- Include jQuery and Slick Slider JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- Initialize Slick Slider -->
+<script>
+    $(document).ready(function(){
+        $('.property-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+            nextArrow: '<button type="button" class="slick-next">Next</button>'
+        });
+    });
+</script>
+{% endblock %}
 {% endblock %}

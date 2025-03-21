@@ -12,7 +12,7 @@ This is a Django-based Real Estate project designed to manage property listings,
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/your-username/your-repository-name.git
-   cd your-repository-name
+   cd real_estate
    ```
 
 2. **Create a virtual environment** (optional but recommended):

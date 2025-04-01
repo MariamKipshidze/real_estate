@@ -41,6 +41,11 @@ class Property(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Property"
+        verbose_name_plural = "Properties"
+        ordering = ['-created_at']
+
     @property
     def price_per_square_meter(self):
         if hasattr(self, 'size') and self.area > 0:
@@ -55,3 +60,7 @@ class PropertyImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.property.title}"
+
+    class Meta:
+        verbose_name = "Property Image"
+        verbose_name_plural = "Property Images"

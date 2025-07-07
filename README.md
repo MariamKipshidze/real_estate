@@ -86,4 +86,29 @@ If not installed, use your package manager:
    - Local: Open `http://127.0.0.1:8000/` in your browser
    - Network: Use your server's IP address with port 8000
    - Admin panel: Access at `/admin/` path (e.g., `http://127.0.0.1:8000/admin/`)
-```
+
+# Production Deployment
+
+For production deployment, we recommend using Gunicorn as the application server with Nginx as a reverse proxy. Here's how to set it up:
+
+1. **Update/upgrade system**:
+   
+   ```bash
+   sudo apt-get update
+   sudo apt-get upgrade
+   ```
+2. **Create virtual env**:
+   
+   ```bash
+   sudo apt-get install python3-venv
+   python3 -m venv env
+   
+   # activate virtual env
+   source env/bin/activate
+   ```
+3. **Clone project**:
+
+   ```bash
+   git clone https://github.com/MariamKipshidze/real_estate.git
+   ```
+   

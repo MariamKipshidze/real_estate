@@ -122,4 +122,9 @@ For production deployment, we recommend using Gunicorn as the application server
    ```bash
    pip install gunicorn
    ```
+6. **Install supervisor**:
+
+   ```bash
+   sudo apt-get install supervisor
+   ```
    

@@ -111,4 +111,15 @@ For production deployment, we recommend using Gunicorn as the application server
    ```bash
    git clone https://github.com/MariamKipshidze/real_estate.git
    ```
+4. **Install Nginx**:
+
+   ```bash
+   sudo apt-get install -y nginx
+   ```
+
+5. **Install gunicorn**:
+
+   ```bash
+   pip install gunicorn
+   ```
    
